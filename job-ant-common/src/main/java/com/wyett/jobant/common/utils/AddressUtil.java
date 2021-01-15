@@ -1,5 +1,8 @@
 package com.wyett.jobant.common.utils;
 
+import com.wyett.jobant.common.log.JobAntLog;
+import com.wyett.jobant.common.log.JobAntLogFactory;
+
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -18,6 +21,9 @@ public class AddressUtil {
     private static final Pattern IP_PATTERN = Pattern.compile("\\d{1,3}(\\.\\d{1,3}){3,5}$");
     private static InetAddress LOCAL_ADDRESS;
 
+    //JobAntLogFactory.useLog4jLogging()
+    private static final JobAntLog log = JobAntLogFactory.getLog(AddressUtil.class);
+
     /**
      * 获得本地ip
      * @return
@@ -26,7 +32,9 @@ public class AddressUtil {
         try {
             return getLocalAddress().getHostAddress();
         } catch (Exception e) {
-            LOGGER.errorLog(ModuleEnum.UTIL, "IPUtil.getLocalIP", null, null, e);
+            //LOGGER.errorLog(ModuleEnum.UTIL, "IPUtil.getLocalIP", null, null, e);
+            log.error("AddressUtil.getLocalIp", e);
+
         }
         return LOCALHOST;
     }
@@ -60,7 +68,8 @@ public class AddressUtil {
                 return localAddress;
             }
         } catch (Exception e) {
-            LOGGER.errorLog(ModuleEnum.UTIL, methodName, "", "", e);
+            //LOGGER.errorLog(ModuleEnum.UTIL, methodName, "", "", e);
+            log.error(methodName, e);
         }
         try {
             Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
@@ -77,17 +86,20 @@ public class AddressUtil {
                                         return address;
                                     }
                                 } catch (Exception e) {
-                                    LOGGER.errorLog(ModuleEnum.UTIL, methodName, "", "", e);
+                                    //LOGGER.errorLog(ModuleEnum.UTIL, methodName, "", "", e);
+                                    log.error(methodName, e);
                                 }
                             }
                         }
                     } catch (Exception e) {
-                        LOGGER.errorLog(ModuleEnum.UTIL, methodName, "", "", e);
+                        //LOGGER.errorLog(ModuleEnum.UTIL, methodName, "", "", e);
+                        log.error(methodName, e);
                     }
                 }
             }
         } catch (Exception e) {
-            LOGGER.errorLog(ModuleEnum.UTIL, methodName, "", "", e);
+            //LOGGER.errorLog(ModuleEnum.UTIL, methodName, "", "", e);
+            log.error(methodName, e);
         }
         return localAddress;
     }
