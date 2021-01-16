@@ -9,7 +9,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.wyett</groupId>
     <artifactId>job-ant-register</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>job ant register</name>
+    <description>register module</description>
+
+    <dependencies>
+
+    </dependencies>
+
 
 
 </project>
