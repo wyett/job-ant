@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyett.jobant.manager.mapper.MailTemplateMapper">
+  <resultMap id="BaseResultMap" type="com.wyett.jobant.manager.domain.MailTemplate">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="send_to" jdbcType="VARCHAR" property="sendTo" />
+    <result column="duplicate_to" jdbcType="VARCHAR" property="duplicateTo" />
+    <result column="mail_type" jdbcType="VARCHAR" property="mailType" />
+    <result column="mail_status" jdbcType="INTEGER" property="mailStatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, send_to, duplicate_to, mail_type, mail_status
+  </sql>
+  <select id="selectByExample" parameterType="com.wyett.jobant.manager.domain.MailTemplateExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from mail_template
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mail_template
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mail_template
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wyett.jobant.manager.domain.MailTemplateExample">
+    delete from mail_template
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wyett.jobant.manager.domain.MailTemplate">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into mail_template (send_to, duplicate_to, mail_type, 
+      mail_status)
+    values (#{sendTo,jdbcType=VARCHAR}, #{duplicateTo,jdbcType=VARCHAR}, #{mailType,jdbcType=VARCHAR}, 
+      #{mailStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wyett.jobant.manager.domain.MailTemplate">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into mail_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sendTo != null">
+        send_to,
+      </if>
+      <if test="duplicateTo != null">
+        duplicate_to,
+      </if>
+      <if test="mailType != null">
+        mail_type,
+      </if>
+      <if test="mailStatus != null">
+        mail_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sendTo != null">
+        #{sendTo,jdbcType=VARCHAR},
+      </if>
+      <if test="duplicateTo != null">
+        #{duplicateTo,jdbcType=VARCHAR},
+      </if>
+      <if test="mailType != null">
+        #{mailType,jdbcType=VARCHAR},
+      </if>
+      <if test="mailStatus != null">
+        #{mailStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wyett.jobant.manager.domain.MailTemplateExample" resultType="java.lang.Long">
+    select count(*) from mail_template
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mail_template
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sendTo != null">
+        send_to = #{record.sendTo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.duplicateTo != null">
+        duplicate_to = #{record.duplicateTo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mailType != null">
+        mail_type = #{record.mailType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mailStatus != null">
+        mail_status = #{record.mailStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mail_template
+    set id = #{record.id,jdbcType=BIGINT},
+      send_to = #{record.sendTo,jdbcType=VARCHAR},
+      duplicate_to = #{record.duplicateTo,jdbcType=VARCHAR},
+      mail_type = #{record.mailType,jdbcType=VARCHAR},
+      mail_status = #{record.mailStatus,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wyett.jobant.manager.domain.MailTemplate">
+    update mail_template
+    <set>
+      <if test="sendTo != null">
+        send_to = #{sendTo,jdbcType=VARCHAR},
+      </if>
+      <if test="duplicateTo != null">
+        duplicate_to = #{duplicateTo,jdbcType=VARCHAR},
+      </if>
+      <if test="mailType != null">
+        mail_type = #{mailType,jdbcType=VARCHAR},
+      </if>
+      <if test="mailStatus != null">
+        mail_status = #{mailStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wyett.jobant.manager.domain.MailTemplate">
+    update mail_template
+    set send_to = #{sendTo,jdbcType=VARCHAR},
+      duplicate_to = #{duplicateTo,jdbcType=VARCHAR},
+      mail_type = #{mailType,jdbcType=VARCHAR},
+      mail_status = #{mailStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

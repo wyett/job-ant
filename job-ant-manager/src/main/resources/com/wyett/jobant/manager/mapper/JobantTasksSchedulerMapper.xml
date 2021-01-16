@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyett.jobant.manager.mapper.JobantTasksSchedulerMapper">
+  <resultMap id="BaseResultMap" type="com.wyett.jobant.manager.domain.JobantTasksScheduler">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="task_env" jdbcType="VARCHAR" property="taskEnv" />
+    <result column="task_status" jdbcType="INTEGER" property="taskStatus" />
+    <result column="task_inverval" jdbcType="INTEGER" property="taskInverval" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, task_name, task_env, task_status, task_inverval, start_time
+  </sql>
+  <select id="selectByExample" parameterType="com.wyett.jobant.manager.domain.JobantTasksSchedulerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from jobant_tasks_scheduler
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jobant_tasks_scheduler
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from jobant_tasks_scheduler
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wyett.jobant.manager.domain.JobantTasksSchedulerExample">
+    delete from jobant_tasks_scheduler
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wyett.jobant.manager.domain.JobantTasksScheduler">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into jobant_tasks_scheduler (task_name, task_env, task_status, 
+      task_inverval, start_time)
+    values (#{taskName,jdbcType=VARCHAR}, #{taskEnv,jdbcType=VARCHAR}, #{taskStatus,jdbcType=INTEGER}, 
+      #{taskInverval,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wyett.jobant.manager.domain.JobantTasksScheduler">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into jobant_tasks_scheduler
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taskName != null">
+        task_name,
+      </if>
+      <if test="taskEnv != null">
+        task_env,
+      </if>
+      <if test="taskStatus != null">
+        task_status,
+      </if>
+      <if test="taskInverval != null">
+        task_inverval,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taskName != null">
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskEnv != null">
+        #{taskEnv,jdbcType=VARCHAR},
+      </if>
+      <if test="taskStatus != null">
+        #{taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="taskInverval != null">
+        #{taskInverval,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wyett.jobant.manager.domain.JobantTasksSchedulerExample" resultType="java.lang.Long">
+    select count(*) from jobant_tasks_scheduler
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update jobant_tasks_scheduler
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.taskName != null">
+        task_name = #{record.taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskEnv != null">
+        task_env = #{record.taskEnv,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskStatus != null">
+        task_status = #{record.taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.taskInverval != null">
+        task_inverval = #{record.taskInverval,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update jobant_tasks_scheduler
+    set id = #{record.id,jdbcType=BIGINT},
+      task_name = #{record.taskName,jdbcType=VARCHAR},
+      task_env = #{record.taskEnv,jdbcType=VARCHAR},
+      task_status = #{record.taskStatus,jdbcType=INTEGER},
+      task_inverval = #{record.taskInverval,jdbcType=INTEGER},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wyett.jobant.manager.domain.JobantTasksScheduler">
+    update jobant_tasks_scheduler
+    <set>
+      <if test="taskName != null">
+        task_name = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskEnv != null">
+        task_env = #{taskEnv,jdbcType=VARCHAR},
+      </if>
+      <if test="taskStatus != null">
+        task_status = #{taskStatus,jdbcType=INTEGER},
+      </if>
+      <if test="taskInverval != null">
+        task_inverval = #{taskInverval,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wyett.jobant.manager.domain.JobantTasksScheduler">
+    update jobant_tasks_scheduler
+    set task_name = #{taskName,jdbcType=VARCHAR},
+      task_env = #{taskEnv,jdbcType=VARCHAR},
+      task_status = #{taskStatus,jdbcType=INTEGER},
+      task_inverval = #{taskInverval,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
