@@ -9,6 +9,7 @@
         <module name="job-ant-register" />
         <module name="job-ant-manager" />
         <module name="job-ant-annotation" />
+        <module name="job-ant-task" />
         <module name="job-ant-common" />
         <module name="job-ant-mbg" />
         <module name="job-ant-agent" />

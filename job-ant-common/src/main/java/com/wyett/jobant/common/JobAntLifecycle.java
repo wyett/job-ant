@@ -7,4 +7,19 @@ package com.wyett.jobant.common;
  */
 
 public interface JobAntLifecycle {
+    /**
+     * start
+     */
+    void start();
+
+    /**
+     * stop
+     */
+    void stop();
+
+    /**
+     * check
+     * @return
+     */
+    boolean isStarted();
 }

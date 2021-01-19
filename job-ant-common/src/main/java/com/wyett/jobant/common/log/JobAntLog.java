@@ -12,6 +12,8 @@ public interface JobAntLog {
 
     boolean isTraceEnabled();
 
+    void info(String s);
+
     void error(String s, Throwable e);
 
     void error(String s);

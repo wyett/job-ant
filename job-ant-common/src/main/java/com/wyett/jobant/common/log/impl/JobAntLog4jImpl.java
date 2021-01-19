@@ -31,6 +31,11 @@ public class JobAntLog4jImpl implements JobAntLog {
     }
 
     @Override
+    public void info(String s) {
+        log.log(FQCN, Level.INFO, s, null);
+    }
+
+    @Override
     public void error(String s, Throwable e) {
         log.log(FQCN, Level.ERROR, s, e);
     }

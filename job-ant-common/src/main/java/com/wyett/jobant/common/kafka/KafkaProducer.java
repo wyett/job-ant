@@ -6,5 +6,5 @@ package com.wyett.jobant.common.kafka;
  * @description: TODO
  */
 
-public class KafkaUtil {
+public class KafkaProducer {
 }
