@@ -1,4 +1,4 @@
-package com.wyett.jobant.manager;
+package com.wyett.jobant.mbg;
 
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;

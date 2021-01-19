@@ -1,7 +1,7 @@
-package com.wyett.jobant.manager.mapper;
+package com.wyett.jobant.mbg.mapper;
 
-import com.wyett.jobant.manager.domain.JobantTasksTemplate;
-import com.wyett.jobant.manager.domain.JobantTasksTemplateExample;
+import com.wyett.jobant.mbg.domain.JobantTasksTemplate;
+import com.wyett.jobant.mbg.domain.JobantTasksTemplateExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

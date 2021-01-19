@@ -1,4 +1,4 @@
-package com.wyett.jobant.manager.domain;
+package com.wyett.jobant.mbg.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;

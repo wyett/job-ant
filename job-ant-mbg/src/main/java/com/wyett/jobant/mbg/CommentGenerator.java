@@ -1,4 +1,4 @@
-package com.wyett.jobant.manager;
+package com.wyett.jobant.mbg;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;

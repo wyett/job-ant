@@ -3,8 +3,10 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-ant-agent" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-ant-annotation" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-ant-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-ant-manager" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/job-ant-mbg" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/job-ant-register" charset="UTF-8" />
   </component>
 </project>

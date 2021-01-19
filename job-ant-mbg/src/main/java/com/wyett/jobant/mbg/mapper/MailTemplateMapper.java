@@ -1,7 +1,7 @@
-package com.wyett.jobant.manager.mapper;
+package com.wyett.jobant.mbg.mapper;
 
-import com.wyett.jobant.manager.domain.MailTemplate;
-import com.wyett.jobant.manager.domain.MailTemplateExample;
+import com.wyett.jobant.mbg.domain.MailTemplate;
+import com.wyett.jobant.mbg.domain.MailTemplateExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

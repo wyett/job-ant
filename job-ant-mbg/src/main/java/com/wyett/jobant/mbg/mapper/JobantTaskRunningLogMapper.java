@@ -1,7 +1,7 @@
-package com.wyett.jobant.manager.mapper;
+package com.wyett.jobant.mbg.mapper;
 
-import com.wyett.jobant.manager.domain.JobantTaskRunningLog;
-import com.wyett.jobant.manager.domain.JobantTaskRunningLogExample;
+import com.wyett.jobant.mbg.domain.JobantTaskRunningLog;
+import com.wyett.jobant.mbg.domain.JobantTaskRunningLogExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

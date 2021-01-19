@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyett.jobant.mbg.mapper.JobantTasksTemplateMapper">
+  <resultMap id="BaseResultMap" type="com.wyett.jobant.mbg.domain.JobantTasksTemplate">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="scheduler_id" jdbcType="BIGINT" property="schedulerId" />
+    <result column="child_name" jdbcType="BIGINT" property="childName" />
+    <result column="task_env" jdbcType="VARCHAR" property="taskEnv" />
+    <result column="task_info" jdbcType="VARCHAR" property="taskInfo" />
+    <result column="task_return" jdbcType="VARCHAR" property="taskReturn" />
+    <result column="task_fail_call" jdbcType="VARCHAR" property="taskFailCall" />
+    <result column="task_success_call" jdbcType="VARCHAR" property="taskSuccessCall" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, scheduler_id, child_name, task_env, task_info, task_return, task_fail_call, task_success_call
+  </sql>
+  <select id="selectByExample" parameterType="com.wyett.jobant.mbg.domain.JobantTasksTemplateExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from jobant_tasks_template
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jobant_tasks_template
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from jobant_tasks_template
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wyett.jobant.mbg.domain.JobantTasksTemplateExample">
+    delete from jobant_tasks_template
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wyett.jobant.mbg.domain.JobantTasksTemplate">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into jobant_tasks_template (scheduler_id, child_name, task_env, 
+      task_info, task_return, task_fail_call, 
+      task_success_call)
+    values (#{schedulerId,jdbcType=BIGINT}, #{childName,jdbcType=BIGINT}, #{taskEnv,jdbcType=VARCHAR}, 
+      #{taskInfo,jdbcType=VARCHAR}, #{taskReturn,jdbcType=VARCHAR}, #{taskFailCall,jdbcType=VARCHAR}, 
+      #{taskSuccessCall,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wyett.jobant.mbg.domain.JobantTasksTemplate">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into jobant_tasks_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="schedulerId != null">
+        scheduler_id,
+      </if>
+      <if test="childName != null">
+        child_name,
+      </if>
+      <if test="taskEnv != null">
+        task_env,
+      </if>
+      <if test="taskInfo != null">
+        task_info,
+      </if>
+      <if test="taskReturn != null">
+        task_return,
+      </if>
+      <if test="taskFailCall != null">
+        task_fail_call,
+      </if>
+      <if test="taskSuccessCall != null">
+        task_success_call,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="schedulerId != null">
+        #{schedulerId,jdbcType=BIGINT},
+      </if>
+      <if test="childName != null">
+        #{childName,jdbcType=BIGINT},
+      </if>
+      <if test="taskEnv != null">
+        #{taskEnv,jdbcType=VARCHAR},
+      </if>
+      <if test="taskInfo != null">
+        #{taskInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="taskReturn != null">
+        #{taskReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="taskFailCall != null">
+        #{taskFailCall,jdbcType=VARCHAR},
+      </if>
+      <if test="taskSuccessCall != null">
+        #{taskSuccessCall,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wyett.jobant.mbg.domain.JobantTasksTemplateExample" resultType="java.lang.Long">
+    select count(*) from jobant_tasks_template
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update jobant_tasks_template
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.schedulerId != null">
+        scheduler_id = #{record.schedulerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.childName != null">
+        child_name = #{record.childName,jdbcType=BIGINT},
+      </if>
+      <if test="record.taskEnv != null">
+        task_env = #{record.taskEnv,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskInfo != null">
+        task_info = #{record.taskInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskReturn != null">
+        task_return = #{record.taskReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskFailCall != null">
+        task_fail_call = #{record.taskFailCall,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskSuccessCall != null">
+        task_success_call = #{record.taskSuccessCall,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update jobant_tasks_template
+    set id = #{record.id,jdbcType=BIGINT},
+      scheduler_id = #{record.schedulerId,jdbcType=BIGINT},
+      child_name = #{record.childName,jdbcType=BIGINT},
+      task_env = #{record.taskEnv,jdbcType=VARCHAR},
+      task_info = #{record.taskInfo,jdbcType=VARCHAR},
+      task_return = #{record.taskReturn,jdbcType=VARCHAR},
+      task_fail_call = #{record.taskFailCall,jdbcType=VARCHAR},
+      task_success_call = #{record.taskSuccessCall,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wyett.jobant.mbg.domain.JobantTasksTemplate">
+    update jobant_tasks_template
+    <set>
+      <if test="schedulerId != null">
+        scheduler_id = #{schedulerId,jdbcType=BIGINT},
+      </if>
+      <if test="childName != null">
+        child_name = #{childName,jdbcType=BIGINT},
+      </if>
+      <if test="taskEnv != null">
+        task_env = #{taskEnv,jdbcType=VARCHAR},
+      </if>
+      <if test="taskInfo != null">
+        task_info = #{taskInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="taskReturn != null">
+        task_return = #{taskReturn,jdbcType=VARCHAR},
+      </if>
+      <if test="taskFailCall != null">
+        task_fail_call = #{taskFailCall,jdbcType=VARCHAR},
+      </if>
+      <if test="taskSuccessCall != null">
+        task_success_call = #{taskSuccessCall,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wyett.jobant.mbg.domain.JobantTasksTemplate">
+    update jobant_tasks_template
+    set scheduler_id = #{schedulerId,jdbcType=BIGINT},
+      child_name = #{childName,jdbcType=BIGINT},
+      task_env = #{taskEnv,jdbcType=VARCHAR},
+      task_info = #{taskInfo,jdbcType=VARCHAR},
+      task_return = #{taskReturn,jdbcType=VARCHAR},
+      task_fail_call = #{taskFailCall,jdbcType=VARCHAR},
+      task_success_call = #{taskSuccessCall,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

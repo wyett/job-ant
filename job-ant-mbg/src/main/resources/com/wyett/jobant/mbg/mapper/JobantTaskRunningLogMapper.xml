@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyett.jobant.mbg.mapper.JobantTaskRunningLogMapper">
+  <resultMap id="BaseResultMap" type="com.wyett.jobant.mbg.domain.JobantTaskRunningLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="task_scheduler_id" jdbcType="INTEGER" property="taskSchedulerId" />
+    <result column="task_child_id" jdbcType="INTEGER" property="taskChildId" />
+    <result column="loginfo" jdbcType="VARCHAR" property="loginfo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, task_scheduler_id, task_child_id, loginfo
+  </sql>
+  <select id="selectByExample" parameterType="com.wyett.jobant.mbg.domain.JobantTaskRunningLogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from jobant_task_running_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jobant_task_running_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from jobant_task_running_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wyett.jobant.mbg.domain.JobantTaskRunningLogExample">
+    delete from jobant_task_running_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wyett.jobant.mbg.domain.JobantTaskRunningLog">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into jobant_task_running_log (task_scheduler_id, task_child_id, loginfo
+      )
+    values (#{taskSchedulerId,jdbcType=INTEGER}, #{taskChildId,jdbcType=INTEGER}, #{loginfo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wyett.jobant.mbg.domain.JobantTaskRunningLog">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into jobant_task_running_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="taskSchedulerId != null">
+        task_scheduler_id,
+      </if>
+      <if test="taskChildId != null">
+        task_child_id,
+      </if>
+      <if test="loginfo != null">
+        loginfo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="taskSchedulerId != null">
+        #{taskSchedulerId,jdbcType=INTEGER},
+      </if>
+      <if test="taskChildId != null">
+        #{taskChildId,jdbcType=INTEGER},
+      </if>
+      <if test="loginfo != null">
+        #{loginfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wyett.jobant.mbg.domain.JobantTaskRunningLogExample" resultType="java.lang.Long">
+    select count(*) from jobant_task_running_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update jobant_task_running_log
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.taskSchedulerId != null">
+        task_scheduler_id = #{record.taskSchedulerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.taskChildId != null">
+        task_child_id = #{record.taskChildId,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginfo != null">
+        loginfo = #{record.loginfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update jobant_task_running_log
+    set id = #{record.id,jdbcType=BIGINT},
+      task_scheduler_id = #{record.taskSchedulerId,jdbcType=INTEGER},
+      task_child_id = #{record.taskChildId,jdbcType=INTEGER},
+      loginfo = #{record.loginfo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wyett.jobant.mbg.domain.JobantTaskRunningLog">
+    update jobant_task_running_log
+    <set>
+      <if test="taskSchedulerId != null">
+        task_scheduler_id = #{taskSchedulerId,jdbcType=INTEGER},
+      </if>
+      <if test="taskChildId != null">
+        task_child_id = #{taskChildId,jdbcType=INTEGER},
+      </if>
+      <if test="loginfo != null">
+        loginfo = #{loginfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wyett.jobant.mbg.domain.JobantTaskRunningLog">
+    update jobant_task_running_log
+    set task_scheduler_id = #{taskSchedulerId,jdbcType=INTEGER},
+      task_child_id = #{taskChildId,jdbcType=INTEGER},
+      loginfo = #{loginfo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

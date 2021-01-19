@@ -17,6 +17,7 @@
         <module>job-ant-register</module>
         <module>job-ant-common</module>
         <module>job-ant-annotation</module>
+        <module>job-ant-mbg</module>
     </modules>
 
     <properties>

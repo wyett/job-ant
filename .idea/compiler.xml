@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="job-ant-common" />
-        <module name="job-ant-manager" />
         <module name="job-ant-register" />
+        <module name="job-ant-manager" />
+        <module name="job-ant-annotation" />
+        <module name="job-ant-common" />
+        <module name="job-ant-mbg" />
         <module name="job-ant-agent" />
       </profile>
     </annotationProcessing>

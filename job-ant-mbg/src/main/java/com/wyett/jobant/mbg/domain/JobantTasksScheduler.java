@@ -1,4 +1,4 @@
-package com.wyett.jobant.manager.domain;
+package com.wyett.jobant.mbg.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -11,7 +11,7 @@ public class JobantTasksScheduler implements Serializable {
 
     private String taskEnv;
 
-    @ApiModelProperty(value = "0: , 1: ")
+    @ApiModelProperty(value = "0: 生效, 1: 无效")
     private Integer taskStatus;
 
     private Integer taskInverval;
