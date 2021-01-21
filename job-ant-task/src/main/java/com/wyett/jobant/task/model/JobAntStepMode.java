@@ -6,7 +6,7 @@ package com.wyett.jobant.task.model;
  * @description: TODO
  */
 
-public enum JobAntStepFlag {
+public enum JobAntStepMode {
     /**
      * un executed
      */
@@ -23,14 +23,14 @@ public enum JobAntStepFlag {
     FAILED;
 
     public boolean isUnexec() {
-        return equals(JobAntStepFlag.UNEXEC);
+        return equals(JobAntStepMode.UNEXEC);
     }
 
     public boolean isSucess() {
-        return equals(JobAntStepFlag.SUCCESS);
+        return equals(JobAntStepMode.SUCCESS);
     }
 
     public boolean isFailed() {
-        return equals(JobAntStepFlag.FAILED);
+        return equals(JobAntStepMode.FAILED);
     }
 }

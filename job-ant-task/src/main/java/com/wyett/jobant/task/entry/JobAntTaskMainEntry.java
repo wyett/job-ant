@@ -1,4 +1,8 @@
-package com.wyett.jobant.task.model;
+package com.wyett.jobant.task.entry;
+
+import com.wyett.jobant.task.model.JobAntTaskMode;
+
+import java.util.List;
 
 /**
  * @author : wyettLei
@@ -6,14 +10,23 @@ package com.wyett.jobant.task.model;
  * @description: TODO
  */
 
-public class JobAntTask {
+public class JobAntTaskMainEntry<T extends JobAntTaskStepEntry> {
 
+    private String taskId;
     private String taskName;
     private JobAntTaskMode taskMode;
-    private JobAntTaskModel jobAntTaskModel;
+    private List<T> taskContext;
     private String taskScheduler;
     private String taskCallback;
     private String taskResult;
+
+    public String getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(String taskId) {
+        this.taskId = taskId;
+    }
 
     public String getTaskName() {
         return taskName;
@@ -31,12 +44,12 @@ public class JobAntTask {
         this.taskMode = taskMode;
     }
 
-    public JobAntTaskModel getJobAntTaskModel() {
-        return jobAntTaskModel;
+    public List<T> getTaskContext() {
+        return taskContext;
     }
 
-    public void setJobAntTaskModel(JobAntTaskModel jobAntTaskModel) {
-        this.jobAntTaskModel = jobAntTaskModel;
+    public void setTaskContext(List<T> taskContext) {
+        this.taskContext = taskContext;
     }
 
     public String getTaskScheduler() {

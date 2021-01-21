@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @description: TODO
  */
 
-public class ManagerProps implements Serializable {
+public class ManagerConstants implements Serializable {
 
     private static final long serialVersionUID = 3895442484844379792L;
 

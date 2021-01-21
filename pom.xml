@@ -19,6 +19,7 @@
         <module>job-ant-annotation</module>
         <module>job-ant-mbg</module>
         <module>job-ant-task</module>
+        <module>job-ant-client</module>
     </modules>
 
     <properties>

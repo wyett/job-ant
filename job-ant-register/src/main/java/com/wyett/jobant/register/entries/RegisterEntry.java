@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * @author : wyettLei
  * @date : Created in 2021/1/19 16:13
- * @description: TODO
+ * @description: node register, T is Type of Node
  */
 
 public class RegisterEntry<T> {

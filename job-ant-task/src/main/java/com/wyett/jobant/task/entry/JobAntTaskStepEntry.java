@@ -1,4 +1,8 @@
-package com.wyett.jobant.task.model;
+package com.wyett.jobant.task.entry;
+
+import com.wyett.jobant.task.model.JobAntStepMode;
+
+import java.util.Map;
 
 /**
  * @author : wyettLei
@@ -6,17 +10,20 @@ package com.wyett.jobant.task.model;
  * @description: TODO
  */
 
-public class JobAntTaskStepModel {
+public class JobAntTaskStepEntry {
+    // stepId
     private long stepId;
     private String stepName;
     private String stepHost;
+
+    // exec env
     private String stepEnv;
     private String stepScripts;
-    private String[] stepParams;
+    private Map<String, Object> stepParams;
     private long stepExecuteTime;
     private long maxRequestTime;
-    private JobAntStepFlag stepCondition;
-    private JobAntStepFlag stepResult;
+    private JobAntStepMode stepCondition;
+    private JobAntStepMode stepResult;
     private String stepFailedScripts;
     private String[] stepFailedParams;
 
@@ -76,11 +83,11 @@ public class JobAntTaskStepModel {
         this.stepScripts = stepScripts;
     }
 
-    public String[] getStepParams() {
+    public Map<String, Object> getStepParams() {
         return stepParams;
     }
 
-    public void setStepParams(String[] stepParams) {
+    public void setStepParams(Map<String, Object> stepParams) {
         this.stepParams = stepParams;
     }
 
@@ -100,19 +107,19 @@ public class JobAntTaskStepModel {
         this.maxRequestTime = maxRequestTime;
     }
 
-    public JobAntStepFlag getStepCondition() {
+    public JobAntStepMode getStepCondition() {
         return stepCondition;
     }
 
-    public void setStepCondition(JobAntStepFlag stepCondition) {
+    public void setStepCondition(JobAntStepMode stepCondition) {
         this.stepCondition = stepCondition;
     }
 
-    public JobAntStepFlag getStepResult() {
+    public JobAntStepMode getStepResult() {
         return stepResult;
     }
 
-    public void setStepResult(JobAntStepFlag stepResult) {
+    public void setStepResult(JobAntStepMode stepResult) {
         this.stepResult = stepResult;
     }
 }
