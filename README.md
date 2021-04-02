@@ -1,1 +1,1 @@
-job-ant is a task-manager tool for OPS
+job-ant is a task-manager tool for DevOps

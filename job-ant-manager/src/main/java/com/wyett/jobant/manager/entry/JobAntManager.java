@@ -1,4 +1,4 @@
-package com.wyett.jobant.manager.model;
+package com.wyett.jobant.manager.entry;
 
 /**
  * @author : wyettLei
