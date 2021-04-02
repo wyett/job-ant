@@ -9,31 +9,8 @@ import java.util.Map;
  */
 
 public class RegisterEntry<T> {
-    private String host;
-    private String port;
-    private T content;
+    private String registerPath;
+    private String registerContent;
 
-    public String getHost() {
-        return host;
-    }
 
-    public void setHost(String host) {
-        this.host = host;
-    }
-
-    public String getPort() {
-        return port;
-    }
-
-    public void setPort(String port) {
-        this.port = port;
-    }
-
-    public T getContent() {
-        return content;
-    }
-
-    public void setContent(T content) {
-        this.content = content;
-    }
 }

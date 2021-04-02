@@ -1,4 +1,4 @@
-package com.wyett.jobant.manager.entry;
+package com.wyett.jobant.common.entry;
 
 import java.io.Serializable;
 
@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @description: TODO
  */
 
-public class JobAntParameter implements Serializable {
+public class JobAntTypeEntry implements Serializable {
 
 
     private static final long serialVersionUID = -3478591556271129342L;
@@ -93,5 +93,17 @@ public class JobAntParameter implements Serializable {
         public boolean isLocalFile() {
             return this.equals(MetaMode.LOCAL_FILE);
         }
+    }
+
+    public static enum NodeType {
+        /**manager node */
+        MANAGER_NODE,
+        /**agent node*/
+        CLIENT_NODE;
+
+        public boolean isManager() {return this.equals(NodeType.MANAGER_NODE);}
+
+        public boolean isAgent() {return this.equals(NodeType.CLIENT_NODE);}
+
     }
 }

@@ -1,5 +1,7 @@
 package com.wyett.jobant.manager.entry;
 
+import com.wyett.jobant.common.entry.JobAntTypeEntry;
+
 /**
  * @author : wyettLei
  * @date : Created in 2021/1/19 14:40
@@ -11,7 +13,7 @@ public class JobAntManager {
     private String managerIp;
     private String managerPort;
     private String serveiceName;
-    private JobAntParameter.ClusterMode nodeRole;
+    private JobAntTypeEntry.ClusterMode nodeRole;
 
     public String getManagerIp() {
         return managerIp;
@@ -37,11 +39,11 @@ public class JobAntManager {
         this.serveiceName = serveiceName;
     }
 
-    public JobAntParameter.ClusterMode getNodeRole() {
+    public JobAntTypeEntry.ClusterMode getNodeRole() {
         return nodeRole;
     }
 
-    public void setNodeRole(JobAntParameter.ClusterMode nodeRole) {
+    public void setNodeRole(JobAntTypeEntry.ClusterMode nodeRole) {
         this.nodeRole = nodeRole;
     }
 }
